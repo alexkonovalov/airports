@@ -20,18 +20,21 @@ export function dijkstra(
     g: Graph,
     source: string,
     weightFn: WeightFunction = DEFAULT_WEIGHT_FUNC,
-    edgeFn: EdgeFunction = (v) => g.outEdges(v) || []
+    edgeFn: EdgeFunction = (v) => g.outEdges(v) || [],
+    maxHops: number = Number.POSITIVE_INFINITY
 ): Record<string, Result> {
-    return runDijkstra(g, String(source), weightFn, edgeFn);
+    return runDijkstra(g, String(source), weightFn, edgeFn, maxHops);
 }
 
 function runDijkstra(
     g: Graph,
     source: string,
     weightFn: WeightFunction,
-    edgeFn: EdgeFunction
+    edgeFn: EdgeFunction,
+    maxHops: number
 ): Record<string, Result> {
     const results: Record<string, Result> = {};
+    const hops: Record<string, number> = {};
     const pq = new PriorityQueue();
     let v: string, vEntry: Result;
 
@@ -60,18 +63,30 @@ function runDijkstra(
 
     g.nodes().forEach((v) => {
         const distance = v === source ? 0 : Number.POSITIVE_INFINITY;
-        results[v] = { distance: distance };
+        results[v] = { distance };
+
         pq.add(v, distance);
     });
 
+    hops[source] = 0;
     while (pq.size() > 0) {
         v = pq.removeMin();
         vEntry = results[v];
+        const hop = hops[v];
+        if (hop + 1 > maxHops) {
+            continue;
+        }
+
         if (vEntry.distance === Number.POSITIVE_INFINITY) {
             break;
         }
 
-        edgeFn(v).forEach(updateNeighbors);
+        const edges = edgeFn(v);
+        edges.forEach(updateNeighbors);
+        edges.forEach((edge) => {
+            const w = edge.v !== v ? edge.v : edge.w;
+            hops[w] = hop + 1;
+        });
     }
 
     return results;

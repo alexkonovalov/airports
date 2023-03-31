@@ -46,11 +46,11 @@ fs.createReadStream("routes.csv")
     })
     .on("end", () => {
         // compute the shortest path from KZN to TLL using the custom Dijkstra's algorithm with a maximum of 3 hops
-        const maxHops = 6;
+        const maxHops = 3;
         function weight(e: Edge) {
             return graph.edge(e);
         }
-        const results = dijkstra(graph, "KZN", weight);
+        const results = dijkstra(graph, "KZN", weight, undefined, maxHops);
 
         // print the shortest distance between KZN and TLL airports
         console.log(
