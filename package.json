@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "csv-parser": "^3.0.0",
+    "geolib": "^3.3.3",
     "graphlib": "^2.1.8",
     "priorityqueuejs": "^2.0.0"
   },

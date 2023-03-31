@@ -1,6 +1,6 @@
 airline,airline ID, source airport, source airport id, destination airport, destination airport id, codeshare, stops, equipment
-2B,410,KZN,2965,SVO,2990,,0,CR2
-2B,410,SVO,2966,PKV,2990,,0,CR2
-2B,410,PKV,2966,TLL,2962,,0,CR2
-2B,410,TLL,2968,IST,2990,,0,CR2
-2B,410,KZN,2968,IST,2990,,0,CR2
+2B,410,TLL,2965,SVO,2990,,0,CR2
+2B,410,SVO,2966,KZN,2990,,0,CR2
+2B,410,KZN,2966,PEK,2962,,0,CR2
+2B,410,TLL,2968,LAX,2990,,0,CR2
+2B,410,LAX,2968,PEK,2990,,0,CR2
