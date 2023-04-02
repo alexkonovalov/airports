@@ -3,6 +3,7 @@ import csv from "csv-parser";
 import { alg, Edge, Graph } from "graphlib";
 import { dijkstra } from "./dijkstra";
 import { getDistance, getPreciseDistance } from "geolib";
+import { AirportRowData } from "./AirportRowData";
 
 // create a new graph
 const graph = new Graph();
@@ -10,12 +11,6 @@ const graph = new Graph();
 interface RouteRowData {
     "source airport": string;
     "destination airport": string;
-}
-
-interface AirportRowData {
-    IATA: string;
-    Latitude: string;
-    Longitude: string;
 }
 
 interface DijkstraResult {
