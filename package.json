@@ -14,13 +14,15 @@
     "csv-parser": "^3.0.0",
     "geolib": "^3.3.3",
     "graphlib": "^2.1.8",
-    "priorityqueuejs": "^2.0.0"
+    "priorityqueuejs": "^2.0.0",
+    "static-kdtree": "^1.0.2"
   },
   "devDependencies": {
     "@types/graphlib": "^2.1.8",
     "@types/node": "^16.11.12",
     "@types/node-dijkstra": "^2.5.3",
     "@types/priorityqueuejs": "^1.0.1",
+    "@types/static-kdtree": "^1.0.0",
     "node-dijkstra": "^2.5.0",
     "typescript": "^4.5.5"
   }

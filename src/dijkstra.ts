@@ -21,9 +21,10 @@ export function dijkstra(
     source: string,
     weightFn: WeightFunction = DEFAULT_WEIGHT_FUNC,
     edgeFn: EdgeFunction = (v) => g.outEdges(v) || [],
+    isHopFn: (e: Edge) => boolean = () => true,
     maxHops: number = Number.POSITIVE_INFINITY
 ): Record<string, Result> {
-    return runDijkstra(g, String(source), weightFn, edgeFn, maxHops);
+    return runDijkstra(g, String(source), weightFn, edgeFn, isHopFn, maxHops);
 }
 
 function runDijkstra(
@@ -31,6 +32,7 @@ function runDijkstra(
     source: string,
     weightFn: WeightFunction,
     edgeFn: EdgeFunction,
+    isHopFn: (e: Edge) => boolean,
     maxHops: number
 ): Record<string, Result> {
     const results: Record<string, Result> = {};
@@ -82,8 +84,13 @@ function runDijkstra(
         }
 
         const edges = edgeFn(v);
+
+        console.log({ edges });
         edges.forEach(updateNeighbors);
         edges.forEach((edge) => {
+            if (!isHopFn(edge)) {
+                return;
+            }
             const w = edge.v !== v ? edge.v : edge.w;
             hops[w] = hop + 1;
         });
