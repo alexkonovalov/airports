@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { Edge, json } from "graphlib";
+import { Edge, json, alg } from "graphlib";
 import { dijkstra } from "./dijkstra";
 import { GRAPH_PATH } from "./constants";
 
@@ -9,6 +9,7 @@ const graph = json.read(graphObj);
 const maxHops = 2;
 function weight(e: Edge) {
     const edge = graph.edge(e);
+    console.log({ edge });
     return edge.distance;
 }
 

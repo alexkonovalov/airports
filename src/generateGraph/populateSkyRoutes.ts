@@ -35,8 +35,11 @@ export function populateSkyRoutes(
         const from = airports[source];
         const to = airports[destination];
 
-        const distance =
-            from && to ? getDistance(from, to) : Number.POSITIVE_INFINITY;
+        console.log({ to, from, row });
+        if (!from || !to) {
+            return;
+        }
+        const distance = getDistance(from, to);
 
         // add edge with weight equal to 1
         graph.setEdge(source, destination, {
