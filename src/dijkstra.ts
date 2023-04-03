@@ -85,7 +85,7 @@ function runDijkstra(
 
         const edges = edgeFn(v);
 
-        console.log({ edges });
+        //  console.log({ edges });
         edges.forEach(updateNeighbors);
         edges.forEach((edge) => {
             if (!isHopFn(edge)) {
