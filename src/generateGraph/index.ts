@@ -30,6 +30,8 @@ async function main() {
     populateSkyRoutes(routes, airports, graph);
     console.log("Sky routes added.");
 
+    //todo add that we check that ground root already exists, then remove air route
+
     console.log("Populating graph with ground routes..");
     populateGroundRoutes(airports, graph);
     console.log("Ground routes added.");
