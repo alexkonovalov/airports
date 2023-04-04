@@ -13,30 +13,30 @@ type EdgeFunction = (v: string) => Edge[];
 
 interface Result {
     distance: number;
+    depth: number;
     predecessor?: string;
 }
 
-export function dijkstra(
-    g: Graph,
-    source: string,
-    weightFn: WeightFunction = DEFAULT_WEIGHT_FUNC,
-    edgeFn: EdgeFunction = (v) => g.outEdges(v) || [],
-    isHopFn: (e: Edge) => boolean = () => true,
-    maxHops: number = Number.POSITIVE_INFINITY
-): Record<string, Result> {
-    return runDijkstra(g, String(source), weightFn, edgeFn, isHopFn, maxHops);
-}
+export type DijkstraArgs = {
+    g: Graph;
+    source: string;
+    target: string;
+    weightFn?: WeightFunction;
+    edgeFn?: EdgeFunction;
+    isDeepEdgeFn?: (e: Edge) => boolean;
+    maxDepth?: number;
+};
 
-function runDijkstra(
-    g: Graph,
-    source: string,
-    weightFn: WeightFunction,
-    edgeFn: EdgeFunction,
-    isHopFn: (e: Edge) => boolean,
-    maxHops: number
-): Record<string, Result> {
+export function dijkstra({
+    g,
+    source,
+    target,
+    weightFn = DEFAULT_WEIGHT_FUNC,
+    edgeFn = (v) => g.outEdges(v) || [],
+    isDeepEdgeFn = () => true,
+    maxDepth = Number.POSITIVE_INFINITY,
+}: DijkstraArgs): number {
     const results: Record<string, Result> = {};
-    const hops: Record<string, number> = {};
     const pq = new PriorityQueue();
     let v: string, vEntry: Result;
 
@@ -49,51 +49,45 @@ function runDijkstra(
         if (weight < 0) {
             throw new Error(
                 "dijkstra does not allow negative edge weights. " +
-                    "Bad edge: " +
-                    edge +
-                    " Weight: " +
-                    weight
+                    `Bad edge: ${edge.v} -> ${edge.w}. Weight: ${weight}`
             );
         }
 
         if (distance < wEntry.distance) {
-            wEntry.distance = distance;
-            wEntry.predecessor = v;
-            pq.decrease(w, distance);
+            const depth = vEntry.depth + (isDeepEdgeFn(edge) ? 1 : 0);
+
+            if (depth <= maxDepth) {
+                wEntry.distance = distance;
+                wEntry.depth = depth;
+                wEntry.predecessor = v;
+                pq.decrease(w, distance);
+            }
         }
     };
 
     g.nodes().forEach((v) => {
-        const distance = v === source ? 0 : Number.POSITIVE_INFINITY;
-        results[v] = { distance };
+        const { distance, depth } =
+            v === source
+                ? { distance: 0, depth: 0 }
+                : { distance: Number.POSITIVE_INFINITY, depth: 0 };
+
+        results[v] = { distance, depth };
 
         pq.add(v, distance);
     });
 
-    hops[source] = 0;
     while (pq.size() > 0) {
         v = pq.removeMin();
         vEntry = results[v];
-        const hop = hops[v];
-        if (hop + 1 > maxHops) {
-            continue;
-        }
 
-        if (vEntry.distance === Number.POSITIVE_INFINITY) {
+        if (v === target || vEntry.distance === Number.POSITIVE_INFINITY) {
             break;
         }
 
         const edges = edgeFn(v);
 
         edges.forEach(updateNeighbors);
-        edges.forEach((edge) => {
-            if (!isHopFn(edge)) {
-                return;
-            }
-            const w = edge.v !== v ? edge.v : edge.w;
-            hops[w] = hop + 1;
-        });
     }
 
-    return results;
+    return results[target].distance;
 }

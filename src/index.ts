@@ -5,24 +5,29 @@ import { GRAPH_PATH } from "./constants";
 
 const graphObj = JSON.parse(readFileSync(GRAPH_PATH).toString());
 const graph = json.read(graphObj);
+const maxLegs = 4;
 
-const maxHops = 2;
 function weight(e: Edge) {
     const edge = graph.edge(e);
-    console.log({ edge });
     return edge.distance;
 }
-
-const results = dijkstra(
-    graph,
-    "TLL",
-    weight,
-    undefined,
-    (e) => {
+const startTime = performance.now();
+const result = dijkstra({
+    g: graph,
+    source: "TLL",
+    target: "PEK",
+    weightFn: weight,
+    edgeFn: undefined,
+    isDeepEdgeFn: (e) => {
         const edge = graph.edge(e);
         return edge.isAir;
     },
-    maxHops
-);
+    maxDepth: maxLegs,
+});
 
-console.log(`Shortest distance (limited to ${maxHops} hops):`, results["PEK"]);
+const endTime = performance.now();
+const executionTime = endTime - startTime;
+
+console.log(`Execution time: ${executionTime} milliseconds`);
+
+console.log(`Shortest distance (limited to ${maxLegs} legs):`, result);
