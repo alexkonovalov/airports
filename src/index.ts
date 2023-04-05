@@ -4,6 +4,12 @@ import { Edge, json as graphlibJson } from "graphlib";
 import { dijkstra } from "./dijkstra";
 import { GRAPH_PATH } from "./constants";
 
+const MAX_LEGS = 4;
+const IATA_REGEX = /^[A-Z]{3}$/;
+
+const graphObj = JSON.parse(fs.readFileSync(GRAPH_PATH).toString());
+const graph = graphlibJson.read(graphObj);
+
 function weightFn(e: Edge) {
     const edge = graph.edge(e);
     return edge.distance;
@@ -13,12 +19,6 @@ function isDeepEdgeFn(e: Edge) {
     const edge = graph.edge(e);
     return edge.isAir;
 }
-
-const MAX_LEGS = 4;
-const IATA_REGEX = /^[A-Z]{3}$/;
-
-const graphObj = JSON.parse(fs.readFileSync(GRAPH_PATH).toString());
-const graph = graphlibJson.read(graphObj);
 
 const app = express();
 const port = process.env.PORT || 3000;
