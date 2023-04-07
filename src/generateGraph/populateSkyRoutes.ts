@@ -35,7 +35,6 @@ export function populateSkyRoutes(
         const from = airports[source];
         const to = airports[destination];
 
-        console.log({ to, from, row });
         if (!from || !to) {
             return;
         }
