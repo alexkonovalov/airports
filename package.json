@@ -1,12 +1,11 @@
 {
-  "name": "graphlib-csv",
+  "name": "airport-routes",
   "version": "1.0.0",
-  "description": "Reads a CSV file containing airline routes information and constructs a graph using graphlib",
+  "description": "Finds the shortest route between airports",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "generate-neighbors": "node dist/generateNeighbourAirports.js",
-    "generate-graph": "node dist/generateGraph/index.js",
+    "start": "node dist/server/server.js",
+    "build-graph": "node dist/build-graph/buildGraph.js",
     "test": "jest",
     "build": "tsc",
     "dev": "tsc --watch"

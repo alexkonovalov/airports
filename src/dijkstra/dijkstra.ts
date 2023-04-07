@@ -1,21 +1,16 @@
-import { Graph } from "graphlib";
+import { Edge, Graph } from "graphlib";
 import PriorityQueue from "./priority-queue.js";
 
-const DEFAULT_WEIGHT_FUNC = () => 1;
-
-interface Edge {
-    v: string;
-    w: string;
-}
-
-type WeightFunction = (edge: Edge) => number;
-type EdgeFunction = (v: string) => Edge[];
-
-type Result = {
+export type Result = {
     predecessor?: string;
     distance: number;
     depth: number;
 };
+
+export type WeightFunction = (edge: Edge) => number;
+export type EdgeFunction = (v: string) => Edge[];
+
+export type Path = Connection[];
 
 export type Connection = {
     to: string;
@@ -23,8 +18,6 @@ export type Connection = {
     distance: number;
     isDeep: boolean;
 };
-
-export type Path = Connection[];
 
 export type DijkstraArgs = {
     g: Graph;
@@ -35,6 +28,8 @@ export type DijkstraArgs = {
     isDeepEdgeFn?: (e: Edge) => boolean;
     maxDepth?: number;
 };
+
+const DEFAULT_WEIGHT_FUNC = () => 1;
 
 export function dijkstra({
     g,

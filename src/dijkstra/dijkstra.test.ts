@@ -1,5 +1,5 @@
 import { Graph, Edge } from "graphlib";
-import { dijkstra, DijkstraArgs } from ".";
+import { dijkstra, DijkstraArgs } from "./dijkstra";
 
 describe("Dijkstra Algorithm", () => {
     let graph: Graph;

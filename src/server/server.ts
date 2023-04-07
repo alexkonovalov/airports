@@ -1,8 +1,8 @@
 import fs from "fs";
 import express, { Request, Response } from "express";
 import { Edge, json as graphlibJson } from "graphlib";
-import { dijkstra } from "./dijkstra";
-import { GRAPH_PATH, TravelMeansEnum } from "./constants";
+import { dijkstra } from "../dijkstra/dijkstra";
+import { GRAPH_PATH, TravelMeansEnum } from "../constants";
 
 const MAX_LEGS = 4;
 const IATA_REGEX = /^[A-Z]{3}$/;
