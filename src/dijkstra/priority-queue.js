@@ -1,4 +1,8 @@
 /**
+ * this is code copied from https://github.com/dagrejs/graphlib/blob/master/lib/data/priority-queue.js
+ */
+
+/**
  * A min-priority queue data structure. This algorithm is derived from Cormen,
  * et al., "Introduction to Algorithms". The basic idea of a min-priority
  * queue is that you can efficiently (in O(1) time) get the smallest key in

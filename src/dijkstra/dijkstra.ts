@@ -31,6 +31,10 @@ export type DijkstraArgs = {
 
 const DEFAULT_WEIGHT_FUNC = () => 1;
 
+/**
+ * Customised and optimised dijkstra implementation derived from
+ * https://github.com/dagrejs/graphlib/blob/master/lib/alg/dijkstra.js
+ */
 export function dijkstra({
     g,
     source,
