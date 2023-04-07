@@ -49,48 +49,75 @@ describe("Dijkstra Algorithm", () => {
         });
 
         it("should return the correct shortest path from A to E considering all weights as 1", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "E",
-                }).distance
-            ).toEqual(2);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "E",
+            });
+
+            expect(distance).toEqual(2);
+            expect(path).toMatchObject([
+                {
+                    distance: 1,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 1,
+                    from: "C",
+                    isDeep: true,
+                    to: "E",
+                },
+            ]);
         });
 
         it("should return the correct shortest path from A to D considering all weights as 1", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "D",
-                }).distance
-            ).toEqual(2);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "D",
+            });
+
+            expect(distance).toEqual(2);
+            expect(path).toMatchObject([
+                {
+                    distance: 1,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 1,
+                    from: "C",
+                    isDeep: true,
+                    to: "D",
+                },
+            ]);
         });
 
         it("should return the correct shortes path from A to C considering all weights as 1", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "C",
-                }).distance
-            ).toEqual(1);
-        });
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "C",
+            });
 
-        it("should return the correct shortest path from A to B considering all weights as 1", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "B",
-                }).distance
-            ).toEqual(1);
+            expect(distance).toEqual(1);
+            expect(path).toMatchObject([
+                {
+                    distance: 1,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+            ]);
         });
 
         it("should return zero path from A to itself", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "A",
-                }).distance
-            ).toEqual(0);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "A",
+            });
+            expect(distance).toEqual(0);
+            expect(path).toEqual([]);
         });
     });
 
@@ -106,48 +133,104 @@ describe("Dijkstra Algorithm", () => {
         });
 
         it("should return the correct shortest path from A to E", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "E",
-                }).distance
-            ).toEqual(7);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "E",
+            });
+
+            expect(distance).toEqual(7);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 2,
+                    from: "C",
+                    isDeep: true,
+                    to: "E",
+                },
+            ]);
         });
 
         it("should return the correct shortest path from A to D", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "D",
-                }).distance
-            ).toEqual(9);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "D",
+            });
+
+            expect(distance).toEqual(9);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 3,
+                    from: "C",
+                    isDeep: true,
+                    to: "B",
+                },
+                {
+                    distance: 1,
+                    from: "B",
+                    isDeep: true,
+                    to: "D",
+                },
+            ]);
         });
 
         it("should return the correct shortes path from A to C", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "C",
-                }).distance
-            ).toEqual(5);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "C",
+            });
+
+            expect(distance).toEqual(5);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+            ]);
         });
 
         it("should return the correct shortest path from A to B", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "B",
-                }).distance
-            ).toEqual(8);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "B",
+            });
+
+            expect(distance).toEqual(8);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 3,
+                    from: "C",
+                    isDeep: true,
+                    to: "B",
+                },
+            ]);
         });
 
         it("should return zero path from A to itself", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "A",
-                }).distance
-            ).toEqual(0);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "A",
+            });
+            expect(distance).toEqual(0);
+            expect(path).toEqual([]);
         });
     });
 
@@ -164,52 +247,102 @@ describe("Dijkstra Algorithm", () => {
         });
 
         it("should return the correct shortest path from A to E", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "E",
-                }).distance
-            ).toEqual(7);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "E",
+            });
+
+            expect(distance).toEqual(7);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 2,
+                    from: "C",
+                    isDeep: true,
+                    to: "E",
+                },
+            ]);
         });
 
         it("should return the correct reachable path from A to D", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "D",
-                }).distance
-            ).toEqual(14);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "D",
+            });
+
+            expect(distance).toEqual(14);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 9,
+                    from: "C",
+                    isDeep: true,
+                    to: "D",
+                },
+            ]);
         });
 
         it("should return the correct shortes path from A to C", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "C",
-                }).distance
-            ).toEqual(5);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "C",
+            });
+
+            expect(distance).toEqual(5);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+            ]);
         });
 
         it("should return the correct shortest paths from A to B", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "B",
-                }).distance
-            ).toEqual(8);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "B",
+            });
+
+            expect(distance).toEqual(8);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 3,
+                    from: "C",
+                    isDeep: true,
+                    to: "B",
+                },
+            ]);
         });
 
         it("should return zero path from A to itself", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "A",
-                }).distance
-            ).toEqual(0);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "A",
+            });
+            expect(distance).toEqual(0);
+            expect(path).toEqual([]);
         });
     });
 
-    describe("when running to the depth of 1 edge but ignoring the depth of A->E edge", () => {
+    describe("when running to the depth of 1 edge but ignoring the depth of C->E edge", () => {
         let args: Omit<DijkstraArgs, "target">;
 
         beforeEach(() => {
@@ -223,48 +356,78 @@ describe("Dijkstra Algorithm", () => {
         });
 
         it("should return the correct shortest path from A to E", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "E",
-                }).distance
-            ).toEqual(7);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "E",
+            });
+
+            expect(distance).toEqual(7);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+                {
+                    distance: 2,
+                    from: "C",
+                    isDeep: false,
+                    to: "E",
+                },
+            ]);
         });
 
-        it("should return the correct reachable path from A to D", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "D",
-                }).distance
-            ).toEqual(Number.POSITIVE_INFINITY);
+        it("should return the infinity from A to D", () => {
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "D",
+            });
+            expect(distance).toEqual(Number.POSITIVE_INFINITY);
+            expect(path).toMatchObject([]);
         });
 
         it("should return the correct shortes path from A to C", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "C",
-                }).distance
-            ).toEqual(5);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "C",
+            });
+
+            expect(distance).toEqual(5);
+            expect(path).toMatchObject([
+                {
+                    distance: 5,
+                    from: "A",
+                    isDeep: true,
+                    to: "C",
+                },
+            ]);
         });
 
         it("should return the correct reachable path from A to B", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "B",
-                }).distance
-            ).toEqual(10);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "B",
+            });
+
+            expect(distance).toEqual(10);
+            expect(path).toMatchObject([
+                {
+                    distance: 10,
+                    from: "A",
+                    isDeep: true,
+                    to: "B",
+                },
+            ]);
         });
 
         it("should return zero path from A to itself", () => {
-            expect(
-                dijkstra({
-                    ...args,
-                    target: "A",
-                }).distance
-            ).toEqual(0);
+            const { distance, path } = dijkstra({
+                ...args,
+                target: "A",
+            });
+            expect(distance).toEqual(0);
+            expect(path).toEqual([]);
         });
     });
 });
