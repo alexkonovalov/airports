@@ -53,7 +53,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "E",
-                })
+                }).distance
             ).toEqual(2);
         });
 
@@ -62,7 +62,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "D",
-                })
+                }).distance
             ).toEqual(2);
         });
 
@@ -71,7 +71,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "C",
-                })
+                }).distance
             ).toEqual(1);
         });
 
@@ -80,7 +80,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "B",
-                })
+                }).distance
             ).toEqual(1);
         });
 
@@ -89,7 +89,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "A",
-                })
+                }).distance
             ).toEqual(0);
         });
     });
@@ -110,7 +110,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "E",
-                })
+                }).distance
             ).toEqual(7);
         });
 
@@ -119,7 +119,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "D",
-                })
+                }).distance
             ).toEqual(9);
         });
 
@@ -128,7 +128,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "C",
-                })
+                }).distance
             ).toEqual(5);
         });
 
@@ -137,7 +137,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "B",
-                })
+                }).distance
             ).toEqual(8);
         });
 
@@ -146,7 +146,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "A",
-                })
+                }).distance
             ).toEqual(0);
         });
     });
@@ -168,7 +168,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "E",
-                })
+                }).distance
             ).toEqual(7);
         });
 
@@ -177,7 +177,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "D",
-                })
+                }).distance
             ).toEqual(14);
         });
 
@@ -186,7 +186,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "C",
-                })
+                }).distance
             ).toEqual(5);
         });
 
@@ -195,7 +195,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "B",
-                })
+                }).distance
             ).toEqual(8);
         });
 
@@ -204,7 +204,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "A",
-                })
+                }).distance
             ).toEqual(0);
         });
     });
@@ -227,7 +227,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "E",
-                })
+                }).distance
             ).toEqual(7);
         });
 
@@ -236,7 +236,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "D",
-                })
+                }).distance
             ).toEqual(Number.POSITIVE_INFINITY);
         });
 
@@ -245,7 +245,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "C",
-                })
+                }).distance
             ).toEqual(5);
         });
 
@@ -254,7 +254,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "B",
-                })
+                }).distance
             ).toEqual(10);
         });
 
@@ -263,7 +263,7 @@ describe("Dijkstra Algorithm", () => {
                 dijkstra({
                     ...args,
                     target: "A",
-                })
+                }).distance
             ).toEqual(0);
         });
     });

@@ -11,11 +11,20 @@ interface Edge {
 type WeightFunction = (edge: Edge) => number;
 type EdgeFunction = (v: string) => Edge[];
 
-interface Result {
+type Result = {
+    predecessor?: string;
     distance: number;
     depth: number;
-    predecessor?: string;
-}
+};
+
+export type Connection = {
+    to: string;
+    from: string;
+    distance: number;
+    isDeep: boolean;
+};
+
+export type Path = Connection[];
 
 export type DijkstraArgs = {
     g: Graph;
@@ -35,7 +44,7 @@ export function dijkstra({
     edgeFn = (v) => g.outEdges(v) || [],
     isDeepEdgeFn = () => true,
     maxDepth = Number.POSITIVE_INFINITY,
-}: DijkstraArgs): number {
+}: DijkstraArgs): { path: Path; distance: number } {
     const results: Record<string, Result> = {};
     const pq = new PriorityQueue();
     let v: string, vEntry: Result;
@@ -89,5 +98,25 @@ export function dijkstra({
         edges.forEach(updateNeighbors);
     }
 
-    return results[target].distance;
+    return {
+        path: getPath(target, results),
+        distance: results[target].distance,
+    };
+}
+
+function getPath(target: string, results: Record<string, Result>): Path {
+    let path = [];
+    let current = target;
+    let predecessor = results[current].predecessor;
+
+    while (predecessor) {
+        const isDeep = !!(results[current].depth - results[predecessor].depth);
+        const distance =
+            results[current].distance - results[predecessor].distance;
+        path.push({ to: current, from: predecessor, distance, isDeep });
+        current = predecessor;
+        predecessor = results[current].predecessor;
+    }
+
+    return path.reverse();
 }

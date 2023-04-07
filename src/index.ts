@@ -2,7 +2,7 @@ import fs from "fs";
 import express, { Request, Response } from "express";
 import { Edge, json as graphlibJson } from "graphlib";
 import { dijkstra } from "./dijkstra";
-import { GRAPH_PATH } from "./constants";
+import { GRAPH_PATH, TravelMeansEnum } from "./constants";
 
 const MAX_LEGS = 4;
 const IATA_REGEX = /^[A-Z]{3}$/;
@@ -47,7 +47,7 @@ app.get(
             return;
         }
 
-        const result = dijkstra({
+        const { distance, path } = dijkstra({
             g: graph,
             source,
             target,
@@ -55,6 +55,16 @@ app.get(
             isDeepEdgeFn,
             maxDepth: MAX_LEGS,
         });
+
+        const result = {
+            start: source,
+            finish: target,
+            distance,
+            path: path.map(({ isDeep, ...x }) => ({
+                ...x,
+                means: isDeep ? TravelMeansEnum.Air : TravelMeansEnum.Ground,
+            })),
+        };
 
         res.json(result);
     }
