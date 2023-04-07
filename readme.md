@@ -1,6 +1,6 @@
 # Node.js Airport Route Finder API
 
-This project is a JSON over HTTP API endpoint that calculates the shortest route between two airports, given their IATA/ICAO codes. It returns the shortest route based on the geographical distance in kilometers.
+This project is a JSON over HTTP API endpoint that calculates the shortest route between two airports, given their IATA codes. It returns the shortest route based on the geographical distance in meters.
 
 ## Description
 
@@ -22,7 +22,7 @@ To set up the project, follow these steps:
 
 ## Usage
 
-Send a `POST` request to the `/route` endpoint with the following JSON request body:
+Send a `GET` request to the `/calculate` endpoint with the following query params:
 
 ```json
 {
@@ -36,7 +36,7 @@ Example request:
 ```json
 {
     "source": "LAX",
-    "target": "JFK"
+    "target": "MWC"
 }
 ```
 
@@ -45,20 +45,20 @@ Example response:
 ```json
 {
     "start": "LAX",
-    "finish": "JFK",
-    "distance": 4154,
+    "finish": "MWC",
+    "distance": 2845099,
     "path": [
         {
             "means": "AIR",
             "from": "LAX",
-            "to": "ORD",
-            "distance": 2800
+            "to": "MKE",
+            "distance": 2823750
         },
         {
-            "means": "AIR",
-            "from": "ORD",
-            "to": "JFK",
-            "distance": 1354
+            "means": "GROUND",
+            "from": "MKE",
+            "to": "MWC",
+            "distance": 21349
         }
     ]
 }
