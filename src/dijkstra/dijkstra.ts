@@ -3,6 +3,7 @@ import PriorityQueue from "./priority-queue.js";
 
 export type Result = {
     predecessor?: string;
+    acceptsShallow: boolean;
     distance: number;
     depth: number;
 };
@@ -62,24 +63,28 @@ export function dijkstra({
         }
 
         if (distance < wEntry.distance) {
-            const depth = vEntry.depth + (isDeepEdgeFn(edge) ? 1 : 0);
+            const isShallowEdge = !isDeepEdgeFn(edge);
+            if (!vEntry.acceptsShallow && isShallowEdge) {
+                return;
+            }
+
+            const depth = vEntry.depth + (isShallowEdge ? 0 : 1);
 
             if (depth <= maxDepth) {
                 wEntry.distance = distance;
                 wEntry.depth = depth;
                 wEntry.predecessor = v;
+                wEntry.acceptsShallow = !isShallowEdge;
+
                 pq.decrease(w, distance);
             }
         }
     };
 
     g.nodes().forEach((v) => {
-        const { distance, depth } =
-            v === source
-                ? { distance: 0, depth: 0 }
-                : { distance: Number.POSITIVE_INFINITY, depth: 0 };
+        const distance = v === source ? 0 : Number.POSITIVE_INFINITY;
 
-        results[v] = { distance, depth };
+        results[v] = { distance, depth: 0, acceptsShallow: true };
 
         pq.add(v, distance);
     });
