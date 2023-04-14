@@ -1,5 +1,5 @@
 {
-  "name": "@airport-route/shared-constants",
+  "name": "@airport-routes/shared-constants",
   "version": "1.0.0",
   "description": "Shared constants for the application",
   "main": "dist/constants.js",
