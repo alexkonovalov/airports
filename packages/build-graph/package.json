@@ -1,0 +1,21 @@
+{
+  "name": "@airport-routes/build-graph",
+  "version": "1.0.0",
+  "description": "Build graph with airport routes",
+  "main": "dist/build-graph/buildGraph.js",
+  "scripts": {
+    "build": "tsc",
+    "build-graph": "node dist/buildGraph.js"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "geolib": "^3.3.3",
+    "graphlib": "^2.1.8",
+    "shared-constants": "file:../shared-constants"
+  },
+  "devDependencies": {
+    "@types/graphlib": "^2.1.8",
+    "@types/node": "^18.15.11",
+    "typescript": "^4.5.5"
+  }
+}

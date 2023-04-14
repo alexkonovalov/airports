@@ -1,0 +1,15 @@
+{
+  "name": "@airport-route/shared-constants",
+  "version": "1.0.0",
+  "description": "Shared constants for the application",
+  "main": "dist/constants.js",
+  "types": "dist/constants.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}

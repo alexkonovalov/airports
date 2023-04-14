@@ -1,11 +1,11 @@
-import fs from "fs";
+import * as fs from "fs";
 import { Graph, json } from "graphlib";
 import { AirportRowData } from "./AirportRowData";
 import {
     AIRPORTS_SOURCE_PATH,
     GRAPH_PATH,
     ROUTES_SOURCE_PATH,
-} from "../constants";
+} from "shared-constants";
 import { RouteRowData } from "./RouteRowData";
 import { populateSkyRoutes } from "./populateSkyRoutes";
 import { csvParse } from "./csvParse";
