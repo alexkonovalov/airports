@@ -1,6 +1,6 @@
 import { Graph } from "graphlib";
-import { AirportRowData } from "./AirportRowData";
 import { getDistance } from "geolib";
+import { AirportRowData } from "./types";
 
 export function populateGroundRoutes(
     airportRows: AirportRowData[],

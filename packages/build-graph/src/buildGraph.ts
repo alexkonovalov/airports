@@ -1,15 +1,11 @@
 import * as fs from "fs";
 import { Graph, json } from "graphlib";
-import { AirportRowData } from "./AirportRowData";
-import {
-    AIRPORTS_SOURCE_PATH,
-    GRAPH_PATH,
-    ROUTES_SOURCE_PATH,
-} from "shared-constants";
-import { RouteRowData } from "./RouteRowData";
+import { GRAPH_PATH } from "@airport-routes/shared-constants";
 import { populateSkyRoutes } from "./populateSkyRoutes";
 import { csvParse } from "./csvParse";
 import { populateGroundRoutes } from "./populateGroundRoutes";
+import { AIRPORTS_SOURCE_PATH, ROUTES_SOURCE_PATH } from "./constants";
+import { AirportRowData, RouteRowData } from "./types";
 
 async function main() {
     const graph = new Graph();
