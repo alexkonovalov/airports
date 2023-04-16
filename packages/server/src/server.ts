@@ -1,14 +1,24 @@
 import fs from "fs";
 import express, { Request, Response } from "express";
 import { Edge, json as graphlibJson } from "graphlib";
-import { GRAPH_PATH } from "@airport-routes/shared-constants";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 import { dijkstra } from "./dijkstra/dijkstra";
 import { TravelMeansEnum } from "./constants";
 
 const MAX_LEGS = 4;
 const IATA_REGEX = /^[A-Z]{3}$/;
 
-const graphObj = JSON.parse(fs.readFileSync(GRAPH_PATH).toString());
+const argv = yargs(hideBin(process.argv))
+    .option("graph", {
+        alias: "g",
+        type: "string",
+        description: "Path for the input graph",
+        demandOption: true,
+    })
+    .parseSync();
+
+const graphObj = JSON.parse(fs.readFileSync(argv.graph).toString());
 const graph = graphlibJson.read(graphObj);
 
 function weightFn(e: Edge) {

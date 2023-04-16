@@ -6,13 +6,15 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/shared-constants",
     "packages/*"
   ],
-  "scripts": {
-    "install-shared": "npm install --prefix packages/shared-constants",
-    "build-shared": "npm run build --prefix packages/shared-constants",
-    "install-all": "npm install --prefix packages/build-graph && npm install --prefix packages/server",
-    "build-all": "npm run build --prefix packages/build-graph && npm run build --prefix packages/server"
+  "devDependencies": {
+    "@types/yargs": "^17.0.24",
+    "@types/graphlib": "^2.1.8",
+    "@types/node": "^18.15.11"
+  },
+  "dependencies": {
+    "graphlib": "^2.1.8",
+    "yargs": "^17.7.1"
   }
 }

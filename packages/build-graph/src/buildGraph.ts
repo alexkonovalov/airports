@@ -1,13 +1,14 @@
 import * as fs from "fs";
 import { Graph, json } from "graphlib";
-import { GRAPH_PATH } from "@airport-routes/shared-constants";
-import { populateSkyRoutes } from "./populateSkyRoutes";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 import { csvParse } from "./csvParse";
+import { populateSkyRoutes } from "./populateSkyRoutes";
 import { populateGroundRoutes } from "./populateGroundRoutes";
 import { AIRPORTS_SOURCE_PATH, ROUTES_SOURCE_PATH } from "./constants";
 import { AirportRowData, RouteRowData } from "./types";
 
-async function main() {
+async function main(graphPath: string) {
     const graph = new Graph();
 
     const airports = (
@@ -15,6 +16,7 @@ async function main() {
             mapHeaders: ({ header }) => header.trim(),
         })
     ).filter(({ IATA }) => IATA !== "\\N");
+
     console.log("Airports data parsed");
 
     const routes = await csvParse<RouteRowData>(ROUTES_SOURCE_PATH, {
@@ -31,10 +33,19 @@ async function main() {
     console.log("Ground routes added.");
 
     const jsonGraph = json.write(graph);
-    fs.writeFileSync(GRAPH_PATH, JSON.stringify(jsonGraph));
-    console.log(`Finish! Graph saved to ${GRAPH_PATH}`);
+    fs.writeFileSync(graphPath, JSON.stringify(jsonGraph));
+    console.log(`Finish! Graph saved to ${graphPath}`);
 }
 
-main()
+const argv = yargs(hideBin(process.argv))
+    .option("output", {
+        alias: "o",
+        type: "string",
+        description: "Output path for the generated graph",
+        demandOption: true,
+    })
+    .parseSync();
+
+main(argv.output)
     .then(() => "All done")
     .catch((e) => console.log(e));

@@ -5,16 +5,11 @@
   "main": "dist/build-graph/buildGraph.js",
   "scripts": {
     "build": "tsc",
-    "build-graph": "node dist/buildGraph.js"
+    "build-graph": "node dist/buildGraph.js --output ./../../data/graph.json"
   },
   "dependencies": {
     "csv-parser": "^3.0.0",
     "geolib": "^3.3.3",
-    "graphlib": "^2.1.8"
-  },
-  "devDependencies": {
-    "@types/graphlib": "^2.1.8",
-    "@types/node": "^18.15.11",
-    "typescript": "^4.5.5"
+    "server": "^1.0.38"
   }
 }
