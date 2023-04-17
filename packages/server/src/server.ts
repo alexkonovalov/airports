@@ -4,10 +4,7 @@ import { Edge, json as graphlibJson } from "graphlib";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { dijkstra } from "./dijkstra/dijkstra";
-import { TravelMeansEnum } from "./constants";
-
-const MAX_LEGS = 4;
-const IATA_REGEX = /^[A-Z]{3}$/;
+import { IATA_REGEX, MAX_LEGS, TravelMeansEnum } from "./constants";
 
 const argv = yargs(hideBin(process.argv))
     .option("graph", {
@@ -44,6 +41,7 @@ app.get(
             res.status(400).send("Missing source or target airport IATA");
             return;
         }
+
         const { source, target } = {
             source: query.source.toUpperCase(),
             target: query.target.toUpperCase(),
@@ -53,6 +51,7 @@ app.get(
             res.status(403).send("Invalid source airport IATA");
             return;
         }
+
         if (!IATA_REGEX.test(target) || !graph.hasNode(target)) {
             res.status(403).send("Invalid target airport IATA");
             return;
