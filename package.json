@@ -11,7 +11,8 @@
   "devDependencies": {
     "@types/yargs": "^17.0.24",
     "@types/graphlib": "^2.1.8",
-    "@types/node": "^18.15.11"
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "graphlib": "^2.1.8",
