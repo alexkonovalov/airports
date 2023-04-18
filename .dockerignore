@@ -1,0 +1,7 @@
+# Ignore dist, node_modules, .md files, and build-graph directory
+**/dist
+**/node_modules
+**/*.md
+**/*.test.ts
+
+packages/build-graph
