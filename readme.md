@@ -91,7 +91,7 @@ Example response:
 }
 ```
 
-## Example 2 (< 4 Leg route not found)
+## Example 2 (<= 4 Leg route not found)
 
 Route: Nuuk Airport to Easter Island Mataveri International Airport
 
@@ -112,15 +112,17 @@ Example response:
 
 1. [John F. Kennedy International Airport to Heathrow Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=JFK&target=LHR)
 
-2. [Dubai International Airport to Singapore Changi Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=DXB&target=SIN)
+2. [Tallinn Airport to Zhukovsky International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=TLL&target=ZIA)
 
-3. [Amsterdam Airport Schiphol to San Francisco International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=AMS&target=SFO)
+3. [Yellowknife Airport to Bora Bora Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=YZF&target=BOB)
 
-4. [Tallinn Airport to Zhukovsky International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=TLL&target=ZIA)
+4. [Longyearbyen Airport to Ulaanbaatar Chinggis Khaan International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LYR&target=ULN)
 
-5. [Yellowknife Airport to Bora Bora Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=YZF&target=BOB)
+5. [Cochabamba Jorge Wilstermann International Airport to Hargeisa Egal International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=CBB&target=HGA)
 
-6. [Longyearbyen Airport to Ulaanbaatar Chinggis Khaan International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LYR&target=ULN)
+6. [Nuuk Airport to Chittagong Shah Amanat International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=GOH&target=CGP)
+
+7. [La Paz El Alto International Airport to Krasnoyarsk Yemelyanovo International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LPB&target=KJA)
 
 ## License
 
