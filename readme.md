@@ -61,7 +61,11 @@ Send a `GET` request to the `/calculate` endpoint with the following query param
 }
 ```
 
-Example request: [_/calculate?source=LAX&target=MWC_](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LAX&target=MWC)
+## Example 1 (Successful)
+
+Route: Los Angeles International Airport to Milwaukee County's Timmerman Airport
+
+URL: [_/calculate?source=LAX&target=MWC_](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LAX&target=MWC)
 
 Example response:
 
@@ -86,6 +90,37 @@ Example response:
     ]
 }
 ```
+
+## Example 2 (< 4 Leg route not found)
+
+Route: Nuuk Airport to Easter Island Mataveri International Airport
+
+URL: [_calculate?source=GOH&target=IPC_](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=GOH&target=IPC)
+
+Example response:
+
+```json
+{
+    "start": "GOH",
+    "finish": "IPC",
+    "distance": "Infinity",
+    "path": []
+}
+```
+
+## Other Examples
+
+1. [John F. Kennedy International Airport to Heathrow Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=JFK&target=LHR)
+
+2. [Dubai International Airport to Singapore Changi Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=DXB&target=SIN)
+
+3. [Amsterdam Airport Schiphol to San Francisco International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=AMS&target=SFO)
+
+4. [Tallinn Airport to Zhukovsky International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=TLL&target=ZIA)
+
+5. [Yellowknife Airport to Bora Bora Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=YZF&target=BOB)
+
+6. [Longyearbyen Airport to Ulaanbaatar Chinggis Khaan International Airport](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=LYR&target=ULN)
 
 ## License
 

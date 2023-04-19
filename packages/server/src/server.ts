@@ -31,6 +31,8 @@ function isDeepEdgeFn(e: Edge) {
 const app = express();
 const port = process.env.PORT || 3000;
 
+console.log({ legs: MAX_LEGS });
+
 app.get(
     "/calculate",
     (
@@ -66,10 +68,12 @@ app.get(
             maxDepth: MAX_LEGS,
         });
 
+        console.log({ distance, path });
         const result = {
             start: source,
             finish: target,
-            distance,
+            distance:
+                distance === Number.POSITIVE_INFINITY ? "Infinity" : distance,
             path: path.map(({ isDeep, ...x }) => ({
                 ...x,
                 means: isDeep ? TravelMeansEnum.Air : TravelMeansEnum.Ground,
