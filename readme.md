@@ -95,7 +95,7 @@ Example response:
 
 Route: Nuuk Airport to Easter Island Mataveri International Airport
 
-URL: [_calculate?source=GOH&target=IPC_](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=GOH&target=IPC)
+URL: [_/calculate?source=GOH&target=IPC_](https://airport-routes-br2xajar3a-lz.a.run.app/calculate?source=GOH&target=IPC)
 
 Example response:
 
