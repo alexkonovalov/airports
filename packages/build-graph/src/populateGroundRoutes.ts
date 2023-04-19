@@ -4,7 +4,8 @@ import { AirportRowData } from "./types";
 
 export function populateGroundRoutes(
     airportRows: AirportRowData[],
-    graph: Graph
+    graph: Graph,
+    onRowFinish?: (index: number) => void
 ) {
     airportRows.forEach((airport1, i) => {
         airportRows.forEach((airport2, j) => {
@@ -28,5 +29,7 @@ export function populateGroundRoutes(
                 }
             }
         });
+
+        onRowFinish && onRowFinish(i);
     });
 }

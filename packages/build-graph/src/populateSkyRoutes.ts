@@ -23,7 +23,6 @@ export function populateSkyRoutes(
         const source = row["source airport"];
         const destination = row["destination airport"];
 
-        // add source and destination airports as nodes, if not already present
         if (!graph.hasNode(source)) {
             graph.setNode(source);
         }
@@ -39,7 +38,6 @@ export function populateSkyRoutes(
         }
         const distance = getDistance(from, to);
 
-        // add edge with weight equal to 1
         graph.setEdge(source, destination, {
             distance,
             isAir: true,

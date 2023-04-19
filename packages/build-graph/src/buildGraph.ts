@@ -29,7 +29,14 @@ async function main(graphPath: string) {
     console.log("Sky routes added.");
 
     console.log("Populating graph with ground routes..");
-    populateGroundRoutes(airports, graph);
+    let groundRoutesProgress = 0;
+    populateGroundRoutes(airports, graph, (i) => {
+        const newProgress = Math.round((i / airports.length) * 100);
+        if (newProgress !== groundRoutesProgress) {
+            groundRoutesProgress = newProgress;
+            process.stdout.write(`Progress: ${newProgress}%\r`);
+        }
+    });
     console.log("Ground routes added.");
 
     const jsonGraph = json.write(graph);
