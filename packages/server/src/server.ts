@@ -31,8 +31,6 @@ function isDeepEdgeFn(e: Edge) {
 const app = express();
 const port = process.env.PORT || 3000;
 
-console.log({ legs: MAX_LEGS });
-
 app.get(
     "/calculate",
     (
